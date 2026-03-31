@@ -1,0 +1,27 @@
+.headerContainer{
+  background-color: red;
+  color: #fff;
+  padding: 20px;
+}
+.container{
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.card{
+  width: 300px;
+  height: 250px;
+  background-color: #eee;
+  border-radius: 10px;
+  padding: 20px;
+}
+
+.btn{
+  background-color: #04aa6d;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}

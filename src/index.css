@@ -9,10 +9,18 @@
   flex-wrap: wrap;
 }
 
-.card{
+.greencard{
   width: 300px;
   height: 250px;
-  background-color: #eee;
+  background-color: #5e31b9;
+  border-radius: 10px;
+  padding: 20px;
+}
+
+.purpleCard{
+  width: 300px;
+  height: 250px;
+  background-color: #1da958;
   border-radius: 10px;
   padding: 20px;
 }

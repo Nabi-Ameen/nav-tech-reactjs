@@ -1,17 +1,10 @@
 import React from 'react'
 
-const Button = ({ isFill }) => {
-
+const Button = ({ title }) => {
     return (
-        <>
-
-            {
-                isFill ?
-                    <button className="btn">Filled Button</button>
-                    :
-                    <button>Outline Button</button>
-            }
-        </>
+        <button className='btn'>
+            {title}
+        </button>
     )
 }
 

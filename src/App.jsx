@@ -4,8 +4,6 @@ import microImage from "./assets/microsoft.jpg"
 import { RxCross2 } from "react-icons/rx";
 function App() {
 
-
-
   // firstName,
   // lastName,
   // email,
@@ -15,19 +13,29 @@ function App() {
   //gender,
   //subjects: 10 subject names select field
 
+  const [formData, setFormData] = useState(
+    {
+      name: "",
+      age: "",
+      gender: "",
+      language: ""
+    }
+  )
 
-  const [name, setName] = useState("");
-  const [age, setAge] = useState();
-  const [gender, setGender] = useState("");
-  const [language, setLanguage] = useState("");
+  const handleInputFields = (e) => {
+    const { name, value, checked } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value
+    })
+  }
 
-
+  const hobies = ["cricket", "hokey", "reading"]
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(name, age, gender, language)
+    console.log("formData", formData)
   }
-
 
   return (
     <div className="flex items-center justify-center mt-10">
@@ -39,8 +47,8 @@ function App() {
             name="name"
             id="name"
             placeholder="Name"
-            value={name}
-            onChange={(event) => setName(event.target.value)}
+            value={formData.name}
+            onChange={handleInputFields}
             className="w-[400px] border rounded-lg p-2"
           />
         </div>
@@ -50,8 +58,8 @@ function App() {
             type="number"
             name="age"
             id="age"
-            value={age}
-            onChange={(e) => setAge(e.target.value)}
+            value={formData.age}
+            onChange={handleInputFields}
             placeholder="AGE"
             className="w-[400px] border rounded-lg p-2" />
         </div>
@@ -64,8 +72,10 @@ function App() {
                 type="radio"
                 name="gender"
                 id="male"
-                checked={gender === "male"}
-                onClick={(e) => setGender("male")} />
+                value="male"
+                checked={formData.gender === "male"}
+                onChange={handleInputFields}
+              />
               <label htmlFor="name">male</label>
             </div>
 
@@ -74,8 +84,9 @@ function App() {
                 type="radio"
                 name="gender"
                 id="female"
-                checked={gender === "female"}
-                onClick={(e) => setGender("female")} />
+                value="female"
+                checked={formData.gender === "female"}
+                onChange={handleInputFields} />
               <label htmlFor="female">female</label>
             </div>
 
@@ -87,7 +98,7 @@ function App() {
               name="language"
               id="language"
               className="w-[300px]"
-              onChange={(e)=> setLanguage(e.target.value)}
+              onChange={handleInputFields}
             >
               <option value="html">html</option>
               <option value="css">css</option>

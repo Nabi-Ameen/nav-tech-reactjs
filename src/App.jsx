@@ -13,12 +13,14 @@ function App() {
   //gender,
   //subjects: 10 subject names select field
 
+
   const [formData, setFormData] = useState(
     {
       name: "",
       age: "",
       gender: "",
-      language: ""
+      language: "",
+      hobies: []
     }
   )
 
@@ -29,6 +31,24 @@ function App() {
       [name]: value
     })
   }
+
+  const handleCheckbox = (e) => {
+    const { checked, value } = e.target;
+
+    if (checked) {
+      setFormData({
+        ...formData,
+        hobies: [...formData.hobies, value]
+      })
+    } else {
+      setFormData({
+        ...formData,
+        hobies: [...formData.hobies.filter((hoby) => hoby !== value)]
+      })
+    }
+  }
+
+  console.log("formData", formData)
 
   const hobies = ["cricket", "hokey", "reading"]
 
@@ -105,6 +125,29 @@ function App() {
               <option value="js">js</option>
               <option value="reactjs">reactjs</option>
             </select>
+          </div>
+
+          <div className="flex items-center gap-9 mt-10">
+            {
+              hobies.map((hoby, index) => {
+                return (
+                  <div key={index}>
+                    <label htmlFor="hobies">
+                      <input
+                        type="checkbox"
+                        name="hobies"
+                        value={hoby}
+                        id="hobies"
+                        onChange={handleCheckbox}
+                      />
+                      {hoby}
+                    </label>
+                  </div>
+                )
+              })
+            }
+
+
           </div>
 
 

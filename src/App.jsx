@@ -1,7 +1,5 @@
-import Card from "./components/card";
 import { useState } from "react";
-import microImage from "./assets/microsoft.jpg"
-import { RxCross2 } from "react-icons/rx";
+import SignupForm from "./components/FormikFromHandling";
 function App() {
 
   // firstName,
@@ -48,8 +46,6 @@ function App() {
     }
   }
 
-  console.log("formData", formData)
-
   const hobies = ["cricket", "hokey", "reading"]
 
   const handleSubmit = (e) => {
@@ -59,7 +55,7 @@ function App() {
 
   return (
     <div className="flex items-center justify-center mt-10">
-      <form className="w-1/2 bg-slate-300 rounded-md p-10 space-y-6">
+      {/* <form className="w-1/2 bg-slate-300 rounded-md p-10 space-y-6">
         <div className="flex flex-col">
           <label htmlFor="name">Name</label>
           <input
@@ -154,7 +150,10 @@ function App() {
         </div>
 
         <button type="submit" onClick={handleSubmit} className="bg-blue-600 text-white px-12 py-4 rounded-lg">Save</button>
-      </form>
+      </form> */}
+
+
+      <SignupForm />
     </div>
   )
 }

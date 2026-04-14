@@ -1,74 +1,57 @@
-import React from 'react';
-import { useFormik } from 'formik';
+import React from 'react'
+import { ErrorMessage, Field, Form, Formik } from 'formik';
+import TextField from './TextField';
 import * as Yup from 'yup';
 
 const SignupForm = () => {
-    const formik = useFormik({
-        initialValues: {
-            firstName: '',
-            lastName: '',
-            email: '',
-        },
-        validationSchema: Yup.object({
-            firstName: Yup.string()
-                .max(15, 'Must be 15 characters or less')
-                .required('Required'),
-            lastName: Yup.string()
-                .max(20, 'Must be 20 characters or less')
-                .required('Required'),
-            email: Yup.string().email('Invalid email address').required('Required'),
-        }),
-        onSubmit: values => {
-            alert(JSON.stringify(values, null, 2));
-        },
-    });
+    const initialValues = {
+        full_name: "",
+        email: "",
+        password: "",
+    }
+
     return (
-        <form onSubmit={formik.handleSubmit}>
-            <label htmlFor="firstName">First Name</label>
-            <input
-                id="firstName"
-                name="firstName"
-                type="text"
-                className='border-2'
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
-                value={formik.values.firstName}
-            />
-            {formik.touched.firstName && formik.errors.firstName ? (
-                <div>{formik.errors.firstName}</div>
-            ) : null}
+        <div>
+            <Formik
+                initialValues={initialValues}
+                validationSchema={Yup.object({
+                    full_name: Yup.string().required('full name is Required'),
+                    email: Yup.string().required('Required'),
+                    password: Yup.string().email('Invalid email address').required('Required'),
+                })}
+                onSubmit={(values) => {
+                    console.log("values", values)
+                }}
+            >
+                {
+                    ({ isSubmitting }) => {
 
-            <label htmlFor="lastName">Last Name</label>
-            <input
-                id="lastName"
-                name="lastName"
-                type="text"
-                className='border-2'
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
-                value={formik.values.lastName}
-            />
-            {formik.touched.lastName && formik.errors.lastName ? (
-                <div>{formik.errors.lastName}</div>
-            ) : null}
+                        return (
+                            <Form className='flex flex-col gap-6'>
+                                <div>
+                                    <TextField type="text" name="full_name" placeholder="full_name" />
+                                    <ErrorMessage name="full_name" component="div" className="text-red-700" />
+                                </div>
+                                <div>
+                                    <TextField type="email" name="email" placeholder="Email" />
+                                    <ErrorMessage name="email" component="div" className="text-red-700" />
+                                </div>
 
-            <label htmlFor="email">Email Address</label>
-            <input
-                id="email"
-                name="email"
-                className='border-2'
-                type="email"
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
-                value={formik.values.email}
-            />
-            {formik.touched.email && formik.errors.email ? (
-                <div>{formik.errors.email}</div>
-            ) : null}
+                                <div>
+                                    <TextField type="password" name="password" placeholder="Password" />
+                                    <ErrorMessage name="password" component="div" className="text-red-700" />
+                                </div>
+                                <button className='bg-green-800 text-white px-12 py-4 rounded-lg' type="submit" disabled={isSubmitting}>
+                                    Submit
+                                </button>
+                            </Form>
+                        )
+                    }
+                }
 
-            <button type="submit">Submit</button>
-        </form>
-    );
-};
+            </Formik>
+        </div>
+    )
+}
 
 export default SignupForm

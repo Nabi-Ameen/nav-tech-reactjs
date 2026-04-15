@@ -1,6 +1,10 @@
 import { Link, useLocation } from "react-router"
 export const Header = () => {
     const location = useLocation();
+
+
+
+
     return (
         <>
             <header className="headerContainer space-x-8 ml-40">

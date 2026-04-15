@@ -11,7 +11,7 @@ const SignupForm = () => {
     }
 
     return (
-        <div>
+        <div className='h-screen flex items-center justify-center'>
             <Formik
                 initialValues={initialValues}
                 validationSchema={Yup.object({
